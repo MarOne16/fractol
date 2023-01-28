@@ -1,63 +1,66 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 14:57:10 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/28 20:05:08 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/28 20:10:03 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	juliaspl(t_data *maro)
+//b u h n i h m i c
+
+int	mandelbrotspl(t_data *maro)
 {
 	float	temp;
 
-	while (maro->x * maro->x + maro->y * maro->y <= 4
-		&& maro->iteration < maro->max_iteration)
+	while ((maro->x * maro->x) + (maro->y * maro->y) <= (4)
+		&& ++maro->iteration < maro->max_iteration)
 	{
-		temp = maro->x * maro->x - maro->y * maro->y + maro->x1;
-		maro->y = 2 * maro->x * maro->y + maro->y1;
+		temp = (maro->x * maro->x) - (maro->y * maro->y)
+			+ map(maro->x0, WIDTH, maro->xr, maro->yr) + maro->x1;
+		maro->y = 2 * maro->x * maro->y
+			+ map(maro->y0, HEIGHT, maro->xi, maro->yi) + maro->y1;
 		maro->x = temp;
-		maro->iteration++;
 	}
-	if (maro->iteration == maro->max_iteration)
+	if (maro->iteration <= maro->max_iteration)
 		return (1);
 	else
 		return (0);
 }
 
-void	updatej(t_data *maro)
-{
-	mlx_clear_window(maro->mlx, maro->mlx_win);
-	julia(maro);
-}
-
-void	julia(t_data *maro)
+void	mandelbrot(t_data *maro)
 {
 	maro->y0 = -1;
-	while (++maro->y0 < WIDTH)
+	while (++maro->y0 < HEIGHT)
 	{
 		maro->x0 = -1;
-		while (++maro->x0 < HEIGHT)
+		while (++maro->x0 < WIDTH)
 		{
-			maro->x = map(maro->x0, WIDTH, maro->xr, maro->yr);
-			maro->y = map(maro->y0, WIDTH, maro->xi, maro->yi);
+			maro->x = 0;
+			maro->y = 0;
 			maro->iteration = 0;
-			if (juliaspl(maro) == 1)
-				my_mlx_pixel_put(maro, maro->x0, maro->y0, 0x000000);
+			if (mandelbrotspl(maro) == 0)
+				my_mlx_pixel_put(maro, maro->x0, maro->y0, 0x00000000);
 			else
 				my_mlx_pixel_put(maro, maro->x0, maro->y0,
-					coloors(maro->iteration % 5));
+					coloors(maro->iteration % 6));
 		}
 	}
 	mlx_put_image_to_window(maro->mlx, maro->mlx_win, maro->img, 0, 0);
 }
 
-void	juliaexe(void)
+void	updatem(t_data *maro)
+{
+	mlx_clear_window(maro->mlx, maro->mlx_win);
+	mandelbrot(maro);
+}
+
+void	mandelbrotexe(void)
 {
 	t_data	maro;
 
@@ -65,14 +68,14 @@ void	juliaexe(void)
 	maro.yr = 2;
 	maro.xi = -2;
 	maro.yi = 2;
-	maro.function = 1;
+	maro.function = 2;
 	maro.max_iteration = 100;
 	maro.mlx = mlx_init();
-	maro.mlx_win = mlx_new_window(maro.mlx, WIDTH, HEIGHT, "julia");
+	maro.mlx_win = mlx_new_window(maro.mlx, WIDTH, HEIGHT, "mandelbrot");
 	maro.img = mlx_new_image(maro.mlx, WIDTH, HEIGHT);
 	maro.addr = mlx_get_data_addr(maro.img, &maro.bit_per_pixel,
 			&maro.line_lenght, &maro.endian);
-	julia(&maro);
+	mandelbrot(&maro);
 	mlx_hook(maro.mlx_win, 4, 0, mousekeys, &maro);
 	mlx_hook(maro.mlx_win, 2, 0, esc, &maro);
 	mlx_hook(maro.mlx_win, 17, 0, destroy, &maro);

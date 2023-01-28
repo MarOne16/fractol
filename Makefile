@@ -1,22 +1,20 @@
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -lmlx -framework Appkit -framework OpenGL -Ofast 
+CFLAGS = -Wall -Werror -Wextra -lmlx -framework Appkit -framework OpenGL -O3 -ffast-math -msse4.2 -mtune=intel
 
-NAME = mandelbrot
+NAME = fractol
 
 HEADER = fractol.h
 
-SCLIENT = k.c
+SRC =  tools.c maousetools.c mandelbrot.c julia.c fractolexe.c\
 
-SRC =  tools.c 
-
-all: $(NAME) $(SERVER)
+all: $(NAME) $(NAME2)
 
 $(NAME): $(SCLIENT) $(SRC) $(HEADER)
 	@$(CC) $(CFLAGS) $(SCLIENT) $(SRC) -o $@
 
 clean:
-	rm -f $(NAME) $(SERVER) $(BNAME) $(BSERVER)
+	rm -f $(NAME)
 
 fclean: clean
 

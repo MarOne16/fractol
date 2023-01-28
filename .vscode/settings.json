@@ -2,6 +2,10 @@
     "files.associations": {
         "*.excalidraw": "json",
         "*.excalidrawlib": "json",
-        "fractol.h": "c"
+        "fractol.h": "c",
+        "__functional_03": "c",
+        "memory_resource": "c",
+        "functional": "c",
+        "memory": "c"
     }
 }
