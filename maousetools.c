@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 15:32:20 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/28 20:10:20 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/29 16:40:26 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	key4(t_data *maro, int x, int y)
 		maro->yr = maro->yr * 0.95;
 		maro->xi = maro->xi * 0.95;
 		maro->yi = maro->yi * 0.95;
-		maro->ax = map(x, WIDTH, maro->xr, maro->yr);
-		maro->ay = map(y, HEIGHT, maro->xi, maro->yi);
+		maro->ax = map(x, maro->movex, WIDTH, maro);
+		maro->ay = map(y, maro->movey, HEIGHT, maro);
 		maro->xr += (maro->bx - maro->ax);
 		maro->yr += (maro->bx - maro->ax);
 		maro->xi += (maro->by - maro->ay);
@@ -28,8 +28,8 @@ void	key4(t_data *maro, int x, int y)
 
 int	mousekeys(int key, int x, int y, t_data *maro)
 {
-	maro->bx = map (x, WIDTH, maro->xr, maro->yr);
-	maro->by = map (y, HEIGHT, maro->xi, maro->yi);
+	maro->bx = map (x, maro->movex, WIDTH, maro);
+	maro->by = map (y, maro->movey, HEIGHT, maro);
 	if (key == 4)
 		key4(maro, x, y);
 	else if (key == 5)
@@ -38,8 +38,8 @@ int	mousekeys(int key, int x, int y, t_data *maro)
 		maro->yr = maro->yr / 0.95;
 		maro->xi = maro->xi / 0.95;
 		maro->yi = maro->yi / 0.95;
-		maro->ax = map(x, WIDTH, maro->xr, maro->yr);
-		maro->ay = map(y, HEIGHT, maro->xi, maro->yi);
+		maro->ax = map(x, maro->movex, WIDTH, maro);
+		maro->ay = map(y, maro->movey, HEIGHT, maro);
 		maro->xr += (maro->bx - maro->ax);
 		maro->yr += (maro->bx - maro->ax);
 		maro->xi += (maro->by - maro->ay);

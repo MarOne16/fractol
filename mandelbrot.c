@@ -6,13 +6,40 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 14:57:10 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/28 20:10:03 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/29 16:40:23 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 //b u h n i h m i c
+
+static int	keys(int key, t_data *maro)
+{
+	if (key == 126)
+	{
+		maro->movey += 50;
+		updatem(maro);
+	}
+	else if (key == 125)
+	{
+		maro->movey -= 50;
+		updatem(maro);
+	}
+	else if (key == 124)
+	{
+		maro->movex += 50;
+		updatem(maro);
+	}
+	else if (key == 123)
+	{
+		maro->movex -= 50;
+		updatem(maro);
+	}
+	else if (key == 53)
+		destroy(maro);
+	return (0);
+}
 
 int	mandelbrotspl(t_data *maro)
 {
@@ -22,9 +49,9 @@ int	mandelbrotspl(t_data *maro)
 		&& ++maro->iteration < maro->max_iteration)
 	{
 		temp = (maro->x * maro->x) - (maro->y * maro->y)
-			+ map(maro->x0, WIDTH, maro->xr, maro->yr) + maro->x1;
+			+ map(maro->x0, maro->movex, WIDTH, maro) + maro->x1;
 		maro->y = 2 * maro->x * maro->y
-			+ map(maro->y0, HEIGHT, maro->xi, maro->yi) + maro->y1;
+			+ map(maro->y0, maro->movey, HEIGHT, maro) + maro->y1;
 		maro->x = temp;
 	}
 	if (maro->iteration <= maro->max_iteration)
@@ -68,6 +95,8 @@ void	mandelbrotexe(void)
 	maro.yr = 2;
 	maro.xi = -2;
 	maro.yi = 2;
+	maro.movex = 0;
+	maro.movey = 0;
 	maro.function = 2;
 	maro.max_iteration = 100;
 	maro.mlx = mlx_init();
@@ -77,7 +106,7 @@ void	mandelbrotexe(void)
 			&maro.line_lenght, &maro.endian);
 	mandelbrot(&maro);
 	mlx_hook(maro.mlx_win, 4, 0, mousekeys, &maro);
-	mlx_hook(maro.mlx_win, 2, 0, esc, &maro);
+	mlx_hook(maro.mlx_win, 2, 0, keys, &maro);
 	mlx_hook(maro.mlx_win, 17, 0, destroy, &maro);
 	mlx_hook(maro.mlx_win, 6, 0, mousemov, &maro);
 	mlx_loop(maro.mlx);

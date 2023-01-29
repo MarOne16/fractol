@@ -6,36 +6,36 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 14:57:10 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/28 21:08:20 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/29 16:40:34 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	keys(int key, t_data *maro)
+static int	keys(int key, t_data *maro)
 {
 	if (key == 126)
 	{
-		maro->y0 += 50;
+		maro->movey += 50;
 		updatej(maro);
 	}
 	else if (key == 125)
 	{
-		maro->y0 -= 50;
+		maro->movey -= 50;
 		updatej(maro);
 	}
 	else if (key == 124)
 	{
-		maro->x += 50;
+		maro->movex += 50;
 		updatej(maro);
 	}
 	else if (key == 123)
 	{
-		maro->x -= 50;
+		maro->movex -= 50;
 		updatej(maro);
 	}
 	else if (key == 53)
-		destroy (maro);
+		destroy(maro);
 	return (0);
 }
 
@@ -71,8 +71,8 @@ void	julia(t_data *maro)
 		maro->x0 = -1;
 		while (++maro->x0 < HEIGHT)
 		{
-			maro->x = map(maro->x0, WIDTH, maro->xr, maro->yr);
-			maro->y = map(maro->y0, WIDTH, maro->xi, maro->yi);
+			maro->x = map(maro->x0, maro->movex, WIDTH, maro);
+			maro->y = map(maro->y0, maro->movey, WIDTH, maro);
 			maro->iteration = 0;
 			if (juliaspl(maro) == 1)
 				my_mlx_pixel_put(maro, maro->x0, maro->y0, 0x000000);
@@ -92,6 +92,8 @@ void	juliaexe(void)
 	maro.yr = 2;
 	maro.xi = -2;
 	maro.yi = 2;
+	maro.movex = 0;
+	maro.movey = 0;
 	maro.function = 1;
 	maro.max_iteration = 100;
 	maro.mlx = mlx_init();
@@ -101,7 +103,6 @@ void	juliaexe(void)
 			&maro.line_lenght, &maro.endian);
 	julia(&maro);
 	mlx_hook(maro.mlx_win, 4, 0, mousekeys, &maro);
-	mlx_hook(maro.mlx_win, 2, 0, esc, &maro);
 	mlx_hook(maro.mlx_win, 17, 0, destroy, &maro);
 	mlx_hook(maro.mlx_win, 2, 0, keys, &maro);
 	mlx_hook(maro.mlx_win, 6, 0, mousemov, &maro);

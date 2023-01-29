@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:46:13 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/28 21:04:52 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/29 16:40:38 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_data
 	double	ay;
 	float	x1;
 	float	y1;
+	float	movex;
+	float	movey;
 	void	*mlx;
 	void	*mlx_win;
 	int		iteration;
@@ -68,6 +70,6 @@ int		mousemov(int x, int y, t_data *fk);
 void	key4(t_data *maro, int x, int y);
 int		mousekeys(int key, int x, int y, t_data *maro);
 void	my_mlx_pixel_put(t_data *img, int x, int y, unsigned int color);
-double	map(double x, double in_max, double out_min, double out_max);
+double	map(double x, double in_min, double in_max, t_data *maro);
 
 #endif

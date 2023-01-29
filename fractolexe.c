@@ -6,21 +6,11 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 15:50:35 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/28 20:09:44 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/29 16:40:36 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-int	esc(int key, t_data *maro)
-{
-	if (key == 53)
-	{
-		mlx_destroy_window(maro->mlx, maro->mlx_win);
-		exit(0);
-	}
-	return (0);
-}
 
 int	destroy(t_data *maro)
 {
