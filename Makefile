@@ -6,7 +6,7 @@ NAME = fractol
 
 HEADER = fractol.h
 
-SRC =  tools.c maousetools.c mandelbrot.c julia.c fractolexe.c\
+SRC =  tools.c maousetools.c mandelbrot.c julia.c fractolexe.c burningship.c\
 
 all: $(NAME) $(NAME2)
 

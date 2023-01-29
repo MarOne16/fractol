@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 15:50:35 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/29 16:40:36 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/29 17:51:53 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	main(int argc, char const *argv[])
 			juliaexe();
 		else if (ft_strcmp(argv[1], "mandelbrot") == 0)
 			mandelbrotexe();
+		else if (ft_strcmp(argv[1], "burningship") == 0)
+			burningshipexe();
 		else
 			write(1, "not existed", 11);
 	}

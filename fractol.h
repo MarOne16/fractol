@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:46:13 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/29 16:40:38 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/29 17:53:30 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,12 @@ typedef struct s_data
 int		ft_strcmp(const char *s1, const char *s2);
 int		destroy(t_data *maro);
 void	updatem(t_data *maro);
+void	updateb(t_data *maro);
 void	updatej(t_data *maro);
 int		esc(int key, t_data *maro);
+void	burningshipexe(void);
+int		burningshipspl(t_data *maro);
+void	burningship(t_data *maro);
 void	mandelbrotexe(void);
 void	juliaexe(void);
 int		trgb(unsigned char t, unsigned char r,

@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 15:32:20 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/29 16:40:26 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/29 17:57:02 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int	mousekeys(int key, int x, int y, t_data *maro)
 		maro->yi += (maro->by - maro->ay);
 	}
 	if (maro->function == 1)
-		updatej(maro);
+		updateb(maro);
 	else if (maro->function == 2)
-		updatem(maro);
+		updateb(maro);
 	return (0);
 }
 
