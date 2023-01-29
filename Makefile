@@ -8,10 +8,12 @@ HEADER = fractol.h
 
 SRC =  tools.c maousetools.c mandelbrot.c julia.c fractolexe.c burningship.c\
 
-all: $(NAME) $(NAME2)
+all: $(NAME)
 
 $(NAME): $(SCLIENT) $(SRC) $(HEADER)
 	@$(CC) $(CFLAGS) $(SCLIENT) $(SRC) -o $@
+
+bonus: all
 
 clean:
 	rm -f $(NAME)

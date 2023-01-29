@@ -6,15 +6,15 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:46:13 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/29 17:53:30 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/29 21:54:33 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 500
+# define HEIGHT 500
 
 # include <mlx.h>
 # include <math.h>

@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:47:03 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/29 17:41:17 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/29 20:26:30 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	mousemov(int x, int y, t_data *maro)
 	if (maro->function == 1)
 		updatej(maro);
 	else if (maro->function == 2)
-		updatem(maro);
+		updatej(maro);
 	return (0);
 }
 
@@ -57,5 +57,5 @@ void	my_mlx_pixel_put(t_data *img, int x, int y, unsigned int color)
 
 double	map(double x, double in_min, double in_max, t_data *maro)
 {
-	return ((x - in_min) * ((maro->yr - maro->xr) / in_max) + maro->xr);
+	return ((x - in_min) * ((maro->yr - maro->xr) / in_max) + maro->xi);
 }

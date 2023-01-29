@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:44:27 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/29 17:56:10 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/29 19:56:51 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	burningshipexe(void)
 	maro.yi = 2;
 	maro.movex = 0;
 	maro.movey = 0;
-	maro.function = 2;
+	maro.function = 3;
 	maro.max_iteration = 100;
 	maro.mlx = mlx_init();
 	maro.mlx_win = mlx_new_window(maro.mlx, WIDTH, HEIGHT, "burningship");

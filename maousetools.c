@@ -6,20 +6,25 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 15:32:20 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/29 17:57:02 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/29 21:55:49 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+double	map1(double x, double in_max, double out_min, double out_max)
+{
+	return (x * ((out_max - out_min) / in_max) + out_min);
+}
+
 void	key4(t_data *maro, int x, int y)
 {
-		maro->xr = maro->xr * 0.95;
-		maro->yr = maro->yr * 0.95;
-		maro->xi = maro->xi * 0.95;
-		maro->yi = maro->yi * 0.95;
-		maro->ax = map(x, maro->movex, WIDTH, maro);
-		maro->ay = map(y, maro->movey, HEIGHT, maro);
+		maro->xr *= 0.95;
+		maro->yr *= 0.95;
+		maro->xi *= 0.95;
+		maro->yi *= 0.95;
+		maro->ax = map1(x, WIDTH, maro->xr, maro->yr);
+		maro->ay = map1(y, WIDTH, maro->xi, maro->yi);
 		maro->xr += (maro->bx - maro->ax);
 		maro->yr += (maro->bx - maro->ax);
 		maro->xi += (maro->by - maro->ay);
@@ -28,26 +33,28 @@ void	key4(t_data *maro, int x, int y)
 
 int	mousekeys(int key, int x, int y, t_data *maro)
 {
-	maro->bx = map (x, maro->movex, WIDTH, maro);
-	maro->by = map (y, maro->movey, HEIGHT, maro);
+	maro->bx = map1(x, WIDTH, maro->xr, maro->yr);
+	maro->by = map1(y, WIDTH, maro->xi, maro->yi);
 	if (key == 4)
 		key4(maro, x, y);
 	else if (key == 5)
 	{
-		maro->xr = maro->xr / 0.95;
-		maro->yr = maro->yr / 0.95;
-		maro->xi = maro->xi / 0.95;
-		maro->yi = maro->yi / 0.95;
-		maro->ax = map(x, maro->movex, WIDTH, maro);
-		maro->ay = map(y, maro->movey, HEIGHT, maro);
+		maro->xr /= 0.95;
+		maro->yr /= 0.95;
+		maro->xi /= 0.95;
+		maro->yi /= 0.95;
+		maro->ax = map1(x, WIDTH, maro->xr, maro->yr);
+		maro->ay = map1(y, WIDTH, maro->xi, maro->yi);
 		maro->xr += (maro->bx - maro->ax);
 		maro->yr += (maro->bx - maro->ax);
 		maro->xi += (maro->by - maro->ay);
 		maro->yi += (maro->by - maro->ay);
 	}
 	if (maro->function == 1)
-		updateb(maro);
+		updatej(maro);
 	else if (maro->function == 2)
+		updatem(maro);
+	else if (maro->function == 3)
 		updateb(maro);
 	return (0);
 }
