@@ -6,11 +6,38 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 14:57:10 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/28 20:05:08 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/28 21:08:20 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int	keys(int key, t_data *maro)
+{
+	if (key == 126)
+	{
+		maro->y0 += 50;
+		updatej(maro);
+	}
+	else if (key == 125)
+	{
+		maro->y0 -= 50;
+		updatej(maro);
+	}
+	else if (key == 124)
+	{
+		maro->x += 50;
+		updatej(maro);
+	}
+	else if (key == 123)
+	{
+		maro->x -= 50;
+		updatej(maro);
+	}
+	else if (key == 53)
+		destroy (maro);
+	return (0);
+}
 
 int	juliaspl(t_data *maro)
 {
@@ -76,6 +103,7 @@ void	juliaexe(void)
 	mlx_hook(maro.mlx_win, 4, 0, mousekeys, &maro);
 	mlx_hook(maro.mlx_win, 2, 0, esc, &maro);
 	mlx_hook(maro.mlx_win, 17, 0, destroy, &maro);
+	mlx_hook(maro.mlx_win, 2, 0, keys, &maro);
 	mlx_hook(maro.mlx_win, 6, 0, mousemov, &maro);
 	mlx_loop(maro.mlx);
 }
