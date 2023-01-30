@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:44:27 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/29 19:56:51 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/30 16:01:21 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int	burningshipspl(t_data *maro)
 		&& ++maro->iteration < maro->max_iteration)
 	{
 		temp = fabs((maro->x * maro->x) - (maro->y * maro->y)
-				+ map(maro->x0, maro->movex, WIDTH, maro));
+				+ map(maro->x0, WIDTH, maro->xr, maro->yr));
 		maro->y = fabs(2 * maro->x * maro->y
-				+ map(maro->y0, maro->movey, HEIGHT, maro));
+				+ map(maro->y0, HEIGHT, maro->xi, maro->yi));
 		maro->x = temp;
 	}
 	if (maro->iteration == maro->max_iteration)

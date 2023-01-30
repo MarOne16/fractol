@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractolexe.c                                       :+:      :+:    :+:   */
+/*   fractolbonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 15:50:35 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/30 20:03:58 by mqaos            ###   ########.fr       */
+/*   Created: 2023/01/30 16:04:33 by mqaos             #+#    #+#             */
+/*   Updated: 2023/01/30 16:34:31 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ int	main(int argc, char const *argv[])
 			juliaexe();
 		else if (ft_strcmp(argv[1], "MANDELBROT") == 0)
 			mandelbrotexe();
+		else if (ft_strcmp(argv[1], "BURNINGSHIP") == 0)
+			burningshipexe();
 		else
-			ft_putstr("FRACTALS EXIST :\n >> MANDELBROT\n >> JULIA\n");
+			ft_putstr("FRACTALS EXIST :\n>> MANDELBROT\n>> JULIA\n>> BURNINGSHIP");
 		return (0);
 	}
-	ft_putstr("FRACTALS EXIST :\n>> MANDELBROT\n>> JULIA\n");
+	ft_putstr("FRACTALS EXIST :\n>> MANDELBROT\n>> JULIA\n>> BURNINGSHIP");
 	return (0);
 }

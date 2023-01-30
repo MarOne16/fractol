@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 14:57:10 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/29 16:40:34 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/30 19:07:46 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,27 @@ static int	keys(int key, t_data *maro)
 {
 	if (key == 126)
 	{
-		maro->movey += 50;
-		updatej(maro);
+		maro->xi += 0.5;
+		maro->yi += 0.5;
 	}
 	else if (key == 125)
 	{
-		maro->movey -= 50;
-		updatej(maro);
+		maro->xi -= 0.5;
+		maro->yi -= 0.5;
 	}
 	else if (key == 124)
 	{
-		maro->movex += 50;
-		updatej(maro);
+		maro->xr -= 0.5;
+		maro->yr -= 0.5;
 	}
 	else if (key == 123)
 	{
-		maro->movex -= 50;
-		updatej(maro);
+		maro->xr += 0.5;
+		maro->yr += 0.5;
 	}
 	else if (key == 53)
 		destroy(maro);
+	updatej(maro);
 	return (0);
 }
 
@@ -71,8 +72,8 @@ void	julia(t_data *maro)
 		maro->x0 = -1;
 		while (++maro->x0 < HEIGHT)
 		{
-			maro->x = map(maro->x0, maro->movex, WIDTH, maro);
-			maro->y = map(maro->y0, maro->movey, WIDTH, maro);
+			maro->x = map(maro->x0, WIDTH, maro->xr, maro->yr);
+			maro->y = map(maro->y0, WIDTH, maro->xi, maro->yi);
 			maro->iteration = 0;
 			if (juliaspl(maro) == 1)
 				my_mlx_pixel_put(maro, maro->x0, maro->y0, 0x000000);
@@ -104,7 +105,7 @@ void	juliaexe(void)
 	julia(&maro);
 	mlx_hook(maro.mlx_win, 4, 0, mousekeys, &maro);
 	mlx_hook(maro.mlx_win, 17, 0, destroy, &maro);
-	mlx_hook(maro.mlx_win, 2, 0, keys, &maro);
+	mlx_hook(maro.mlx_win, 3, 0, keys, &maro);
 	mlx_hook(maro.mlx_win, 6, 0, mousemov, &maro);
 	mlx_loop(maro.mlx);
 }

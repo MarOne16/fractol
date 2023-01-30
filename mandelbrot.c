@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 14:57:10 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/29 17:36:18 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/30 19:54:50 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	mandelbrotspl(t_data *maro)
 		&& ++maro->iteration < maro->max_iteration)
 	{
 		temp = (maro->x * maro->x) - (maro->y * maro->y)
-			+ map(maro->x0, maro->movex, WIDTH, maro);
+			+ map(maro->x0, WIDTH, maro->xr, maro->yr);
 		maro->y = 2 * maro->x * maro->y
-			+ map(maro->y0, maro->movey, HEIGHT, maro);
+			+ map(maro->y0, HEIGHT, maro->xi, maro->yi);
 		maro->x = temp;
 	}
 	if (maro->iteration == maro->max_iteration)
@@ -98,7 +98,7 @@ void	mandelbrotexe(void)
 	maro.movex = 0;
 	maro.movey = 0;
 	maro.function = 2;
-	maro.max_iteration = 100;
+	maro.max_iteration = 5;
 	maro.mlx = mlx_init();
 	maro.mlx_win = mlx_new_window(maro.mlx, WIDTH, HEIGHT, "mandelbrot");
 	maro.img = mlx_new_image(maro.mlx, WIDTH, HEIGHT);

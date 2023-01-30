@@ -1,23 +1,31 @@
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -lmlx -framework Appkit -framework OpenGL -O3 -ffast-math -msse4.2 -mtune=intel
+RM = rm -f
+
+CFLAGS = -Wall -Werror -Wextra -lmlx -framework Appkit -framework OpenGL -O3
 
 NAME = fractol
+NAME2 = fractol_bonus
 
 HEADER = fractol.h
 
 SRC =  tools.c maousetools.c mandelbrot.c julia.c fractolexe.c burningship.c\
 
+SRCB =  tools.c maousetools.c mandelbrot.c julia.c fractolbonus.c burningship.c\
+
 all: $(NAME)
 
-$(NAME): $(SCLIENT) $(SRC) $(HEADER)
-	@$(CC) $(CFLAGS) $(SCLIENT) $(SRC) -o $@
+$(NAME): $(SRC) $(HEADER)
+	@$(CC) $(CFLAGS) $(SRC) -o $@
 
-bonus: all
+bonus: $(NAME2)
+
+$(NAME2): $(SRC) $(HEADER)
+	@$(CC) $(CFLAGS) $(SRCB) -o $@
 
 clean:
-	rm -f $(NAME)
+	@$(RM) $(NAME) $(NAME2)
 
 fclean: clean
 
-re: clean all
+re: fclean all
