@@ -2,7 +2,7 @@ CC = gcc
 
 RM = rm -f
 
-CFLAGS = -Wall -Werror -Wextra -lmlx -framework Appkit -framework OpenGL -O3
+CFLAGS = -Wall -Werror -Wextra -lmlx -framework Appkit -framework OpenGL -O3 
 
 NAME = fractol
 NAME2 = fractol_bonus
@@ -24,8 +24,9 @@ $(NAME2): $(SRC) $(HEADER)
 	@$(CC) $(CFLAGS) $(SRCB) -o $@
 
 clean:
-	@$(RM) $(NAME) $(NAME2)
+	@$(RM) $(NAME)
 
 fclean: clean
+	@$(RM) $(NAME2)
 
 re: fclean all

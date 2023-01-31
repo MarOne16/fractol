@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:44:27 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/30 16:01:21 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/30 22:47:30 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,27 @@ static int	keys(int key, t_data *maro)
 {
 	if (key == 126)
 	{
-		maro->movey += 50;
-		updateb(maro);
+		maro->xi += 0.5;
+		maro->yi += 0.5;
 	}
 	else if (key == 125)
 	{
-		maro->movey -= 50;
-		updateb(maro);
+		maro->xi -= 0.5;
+		maro->yi -= 0.5;
 	}
 	else if (key == 124)
 	{
-		maro->movex += 50;
-		updateb(maro);
+		maro->xr -= 0.5;
+		maro->yr -= 0.5;
 	}
 	else if (key == 123)
 	{
-		maro->movex -= 50;
-		updateb(maro);
+		maro->xr += 0.5;
+		maro->yr += 0.5;
 	}
 	else if (key == 53)
 		destroy(maro);
+	updateb(maro);
 	return (0);
 }
 

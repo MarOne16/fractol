@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 14:57:10 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/30 19:54:50 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/30 22:47:05 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,27 @@ static int	keys(int key, t_data *maro)
 {
 	if (key == 126)
 	{
-		maro->movey += 50;
-		updatem(maro);
+		maro->xi += 0.5;
+		maro->yi += 0.5;
 	}
 	else if (key == 125)
 	{
-		maro->movey -= 50;
-		updatem(maro);
+		maro->xi -= 0.5;
+		maro->yi -= 0.5;
 	}
 	else if (key == 124)
 	{
-		maro->movex += 50;
-		updatem(maro);
+		maro->xr -= 0.5;
+		maro->yr -= 0.5;
 	}
 	else if (key == 123)
 	{
-		maro->movex -= 50;
-		updatem(maro);
+		maro->xr += 0.5;
+		maro->yr += 0.5;
 	}
 	else if (key == 53)
 		destroy(maro);
+	updatem(maro);
 	return (0);
 }
 
@@ -98,7 +99,7 @@ void	mandelbrotexe(void)
 	maro.movex = 0;
 	maro.movey = 0;
 	maro.function = 2;
-	maro.max_iteration = 5;
+	maro.max_iteration = 16;
 	maro.mlx = mlx_init();
 	maro.mlx_win = mlx_new_window(maro.mlx, WIDTH, HEIGHT, "mandelbrot");
 	maro.img = mlx_new_image(maro.mlx, WIDTH, HEIGHT);
